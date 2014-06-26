@@ -13,7 +13,7 @@ module ResqueWorkersNag
 
     def length queue
       q = @queues.include?(queue) or raise NoSuchQueue, "Queue #{queue} does not exist"
-      Resque.queue(q).length
+      Resque.size queue
     end
 
   end
