@@ -15,6 +15,8 @@ module ResqueWorkersNag
           critical!
         elsif @working_length >= warning
           warning!
+        else
+          ok!
         end
       end
       return @exit_code, @msg
@@ -23,6 +25,10 @@ module ResqueWorkersNag
     private
     def self.message
       "Queue #{@working_queue} has a length of #{@working_length}"
+    end
+
+    def self.ok!
+      @msg << "OK: #{message}"
     end
 
     def self.critical!
