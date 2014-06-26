@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+#-*- mode: ruby -*-
+
+$LOAD_PATH.push File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'resque_workers_nag'
+
+require 'optparse'
+
+hostname = 'localhost'
+port = 6379
+queue_string = 'all'
+
+warning = 120
+critical = 250
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{$0} [options]"
+  opts.on("-r", "--redis_host HOSTNAME", "Hostname")          { |r| hostname = r.to_s }
+  opts.on("-p", "--port PORT", "Port")                        { |p| port = p.to_i }
+  opts.on("-q", "--queue QUEUE1,QUEUE2", "Queues; or 'all'")  { |q| queue_string = q.to_s }
+
+  opts.on("-w", "--warning WARNING_SIZE", "Warning Size")     { |w| warning = w.to_i }
+  opts.on("-c", "--critical CRITICAL_SIZE", "Critical Name")  { |c| critical = c.to_i }
+end.parse!
+
+resque_queues  = ResqueWorkersNag::ResqueQueues.new(hostname, port)
+exit_code, msg = ResqueWorkersNag::Query.work! resque_queues, queue_string.split(','), warning, critical
+
+puts msg.join("\n")
+exit exit_code

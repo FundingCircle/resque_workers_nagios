@@ -1,0 +1,6 @@
+.vagrant
+.ruby-version
+.ruby-gemset
+tmp
+*~
+*#
