@@ -24,7 +24,7 @@ module ResqueWorkersNag
 
     private
     def self.message
-      "Queue #{@working_queue} has a length of #{@working_length}"
+      "Queue #{@working_queue} has a length of #{@working_length} | #{@working_queue}=#{@working_length}"
     end
 
     def self.ok!
