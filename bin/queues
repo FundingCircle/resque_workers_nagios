@@ -27,5 +27,5 @@ end.parse!
 resque_queues  = ResqueWorkersNag::ResqueQueues.new(hostname, port)
 exit_code, msg = ResqueWorkersNag::Query.work! resque_queues, queue_string.split(','), warning, critical
 
-puts msg.join("\n")
+puts msg.join("\n").strip
 exit exit_code
