@@ -1,2 +1,2 @@
 source 'https://rubygems.org'
-gem 'resque', github: 'resque/resque'
+gem 'resque', git: 'https://github.com/resque/resque'
