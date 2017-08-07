@@ -11,7 +11,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    json (1.8.2)
+    json (1.8.6)
     mono_logger (1.1.0)
     redis (3.2.1)
     redis-namespace (1.5.1)
@@ -22,4 +22,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  json (~> 1.8.6)
   resque!
+
+BUNDLED WITH
+   1.15.3
